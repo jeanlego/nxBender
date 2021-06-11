@@ -181,16 +181,16 @@ class NXSession(object):
                 continue
 
             try:
-                key, value = line.split(' = ', 1)
+                key, value = line.split('=', 1)
+                key = key.strip()
+                value = value.strip()
             except ValueError:
                 logging.warn("Unexpected line in session start message: '%s'" % line)
 
             if key == 'Route':
                 routes.append(value)
-            elif key not in srv_options:
-                srv_options[key] = value
             else:
-                logging.info('Duplicated srv_options value %s = %s' % (key, value))
+                srv_options.get(key,[]).append(value)
 
             logging.debug("srv_option '%s' = '%s'" % (key, value))
 

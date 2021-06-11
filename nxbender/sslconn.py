@@ -29,8 +29,8 @@ class SSLConnection(object):
             raw = map(ord, raw)
         return ':'.join(['%02x' % c for c in raw])
 
-def print_fingerprint(host):
-    conn = SSLConnection(None, host, 443)
+def print_fingerprint(host, port):
+    conn = SSLConnection(None, host, port)
     print("Server's certificate fingerprint: %s" % conn.fingerprint)
 
 class SSLTunnel(SSLConnection):

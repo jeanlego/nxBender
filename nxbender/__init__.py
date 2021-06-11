@@ -70,7 +70,7 @@ def main():
     except requests.exceptions.SSLError as e:
         logging.error("SSL error: %s" % e)
         # print the server's fingerprint for the user to consider
-        sslconn.print_fingerprint(args.server)
+        sslconn.print_fingerprint(args.server, args.port)
     except requests.exceptions.ConnectionError as e:
         message = e.message.reason.message.split(':')[1:][-1]   # yuk
         logging.error("Error connecting to remote host: %s" % message)
